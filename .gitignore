@@ -153,6 +153,6 @@ dmypy.json
 cython_debug/
 
 # PyCharm
-
+test_main.py
 
 *db
