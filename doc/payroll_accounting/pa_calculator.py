@@ -14,7 +14,7 @@ class pa_calculator:            # pa = payroll accounting
     
     def lohnsteuer(self):
         zu_versteuerndes_einkommen = self.berechung_zu_versteuerndes_einkommen()
-        LSt = zu_versteuerndes_einkommen * self.percent(42)
+        LSt = zu_versteuerndes_einkommen * self.percent(42)     #To-Do -Loop to limit the percentages. Information at github
         return max(0, round(LSt, 2))
     
     def kirchensteuer(self):
