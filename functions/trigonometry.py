@@ -39,16 +39,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 from main import MainWindow
-from funktionFrame import FunktionFrame
+from functionFrameBase import FunctionFrameBase
 
-class Trigonometry(FunktionFrame):
-    def __init__(self, master, parent: MainWindow):
+class Trigonometry(FunctionFrameBase):
+    def __init__(self, master):
         super().__init__(master)
 
         '''dir_path = os.path.dirname(os.path.realpath(__file__))
         self.tk.call('source', os.path.join(dir_path, 'azure.tcl'))
         self.tk.call("set_theme", "light")'''
-        self.parent = parent
+        #self.parent = parent
         self.create_widget()
     '''
     # Funktionen definieren
@@ -97,7 +97,7 @@ class Trigonometry(FunktionFrame):
     # Plot anzeigen
     plt.show()'''
 
-    def create_widget(self): #q: was heißt unexpected indentation? 
+    def create_widget(self):
         self.amplitude_lable = ttk.Label(self, text="Amplitude")
         self.amplitude_entry = ttk.Entry(self)
         self.frequency_lable = ttk.Label(self, text="Frequency")
