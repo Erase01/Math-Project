@@ -194,8 +194,8 @@ class Trigonometry(FunctionFrameBase):
         self.ax.yaxis.set_ticks_position('left')
 
         # Plot the function
-        self.ax.set_xlabel(x_value)
-        self.ax.set_ylabel(y_value)
+        self.ax.set_xlabel(x_value, labelpad=10, loc='right')
+        self.ax.set_ylabel(y_value, labelpad=10, loc='top')
         self.ax.plot(x, y, color=self.random_color(), label=selected_function)
         self.ax.legend(loc='upper right')
         self.ax.set_title(title)
