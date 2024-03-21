@@ -104,27 +104,28 @@ class Trigonometry(FunctionFrameBase):
         self.frequency_entry = ttk.Entry(self)
         self.phase_lable = ttk.Label(self, text="Phase")
         self.phase_entry = ttk.Entry(self)
-        self.xvalue_lable = ttk.Label(self, text="x-value")
+        self.xvalue_lable = ttk.Label(self, text="x-label")
         self.xvalue_entry = ttk.Entry(self)
-        self.yvalue_lable = ttk.Label(self, text="y-value")
+        self.yvalue_lable = ttk.Label(self, text="y-label")
         self.yvalue_entry = ttk.Entry(self)
         self.var = tk.StringVar(value="sin")
         
-        #print_button = ttk.Button(self, text="Print", command=self.calculate_tfunktion)    ToDo: Add this method
+        print_button = ttk.Button(self, text="Print", command=self.calculate_tfunktion)
         clear_button = ttk.Button(self, text="Clear", command=self.clear_canvas)           #ToDo: Add this method
 
         sin_button = ttk.Radiobutton(self, text="Sinus", variable=self.var, value="sin")
         cos_button = ttk.Radiobutton(self, text="Cosinus", variable=self.var, value="cos")
         tan_button = ttk.Radiobutton(self, text="Tangens", variable=self.var, value="tan")
 
-        clear_button.grid(row=0, column=0, padx=5, pady=5, sticky="w")
-        sin_button.grid(row=0, column=1, padx=5, pady=5, sticky="w")
-        cos_button.grid(row=0, column=2, padx=5, pady=5, sticky="w")
-        tan_button.grid(row=0, column=3, padx=5, pady=5, sticky="w")
+        print_button.grid(row=0, column=0, padx=5, pady=5, sticky="w")
+        clear_button.grid(row=0, column=1, padx=5, pady=5, sticky="w")
+        sin_button.grid(row=0, column=2, padx=5, pady=5, sticky="w")
+        cos_button.grid(row=0, column=3, padx=5, pady=5, sticky="w")
+        tan_button.grid(row=0, column=4, padx=5, pady=5, sticky="w")
 
         # Create the canvas
         self.fig = plt.figure(figsize=(5, 4), dpi=100)
-        self.ax = self.fig.add_subplot(111) 
+        self.ax = self.fig.add_subplot(111)
         self.canvas = FigureCanvasTkAgg(self.fig, master=self)
 
         self.grid_widgets()
@@ -147,25 +148,55 @@ class Trigonometry(FunctionFrameBase):
         self.yvalue_entry.grid(row=5, column=1, padx=5, pady=5, sticky="w")
         self.canvas.get_tk_widget().grid(row=6, column=0, columnspan=2, padx=5, pady=5, sticky="w")
 
+    def random_color(self):
+        # Get random color, which is not already used in the plot
+        colors = list(plt.rcParams['axes.prop_cycle'].by_key()['color'])
+        lines = plt.gca().get_lines()
+        used_colors = [line.get_color() for line in lines]
+        available_colors = [color for color in colors if color not in used_colors]
+        if available_colors:
+            return np.random.choice(available_colors)
+        else:
+            # Fallback color
+            return "black" 
+
     def calculate_tfunktion(self):
         # Get the values from the entries
         amplitude = float(self.amplitude_entry.get())
         frequency = float(self.frequency_entry.get())
         phase = float(self.phase_entry.get())
-        x_value = float(self.xvalue_entry.get())
-        y_value = float(self.yvalue_entry.get())
+        x_value = self.xvalue_entry.get()
+        y_value = self.yvalue_entry.get()
+
+        x = np.linspace(-2*np.pi, 2*np.pi, 1000)
 
         # Get the selected function
         selected_function = self.var.get()
 
         # Calculate the function
         if selected_function == "sin":
-            y = amplitude * np.sin(frequency * x_value + phase)
+            y = amplitude * np.sin(frequency * x + phase)
+            title = "Sinus function"
         elif selected_function == "cos":
-            y = amplitude * np.cos(frequency * x_value + phase)
+            y = amplitude * np.cos(frequency * x + phase)
+            title = "Cosinus function"
         elif selected_function == "tan":
-            y = amplitude * np.tan(frequency * x_value + phase)
+            y = amplitude * np.tan(frequency * x + phase)
+            title = "Tangens function"
+
+        self.ax.spines['right'].set_color('none')
+        self.ax.spines['top'].set_color('none')
+
+        self.ax.spines['bottom'].set_position(('data', 0))
+        self.ax.spines['left'].set_position(('data', 0))
+
+        self.ax.xaxis.set_ticks_position('bottom')
+        self.ax.yaxis.set_ticks_position('left')
 
         # Plot the function
-        self.ax.plot(x_value, y, 'ro')
+        self.ax.set_xlabel(x_value)
+        self.ax.set_ylabel(y_value)
+        self.ax.plot(x, y, color=self.random_color(), label=selected_function)
+        self.ax.legend(loc='upper right')
+        self.ax.set_title(title)
         self.canvas.draw()
