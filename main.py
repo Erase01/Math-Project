@@ -47,9 +47,11 @@ class MainWindow(WindowBase):
         self.menuBar.add_cascade(label="Program", menu=self.programMenu)
         self.programMenu.add_command(label="Exit", command=self.quit)
 
-        self.funktionsMenu = tk.Menu(self.menuBar, tearoff=0)
-        self.menuBar.add_cascade(label="Funktions", menu=self.funktionsMenu)
-        self.funktionsMenu.add_command(label="Trigonometry", command=lambda: self.select_frame(f.trigonometry.Trigonometry(self)))
+        self.functionsMenu = tk.Menu(self.menuBar, tearoff=0)
+        self.menuBar.add_cascade(label="Functions", menu=self.functionsMenu)
+        self.functionsMenu.add_command(label="Trigonometry", command=lambda: self.select_frame(f.trigonometry.Trigonometry(self)))
+        self.functionsMenu.add_command(label="Exponential", command=lambda: self.select_frame(f.exponential.Exponential(self)))
+
         self.extrasMenu = tk.Menu(self.menuBar, tearoff=0)
         self.menuBar.add_cascade(label="Extras", menu=self.extrasMenu)
         self.extrasMenu.add_command(label="Export")
