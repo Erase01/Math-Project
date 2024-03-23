@@ -1,3 +1,4 @@
 from . import trigonometry
+from . import exponential
 
-__all__ = ['trigonometry']
+__all__ = ['trigonometry', 'exponential']
