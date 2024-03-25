@@ -49,6 +49,7 @@ class MainWindow(WindowBase):
 
         self.functionsMenu = tk.Menu(self.menuBar, tearoff=0)
         self.menuBar.add_cascade(label="Functions", menu=self.functionsMenu)
+        self.functionsMenu.add_command(label="Function Analyzer", command=lambda: self.select_frame(f.funcAnalyzer.FunctionAnalyzer(self)))
         self.functionsMenu.add_command(label="Trigonometry", command=lambda: self.select_frame(f.trigonometry.Trigonometry(self)))
         self.functionsMenu.add_command(label="Exponential", command=lambda: self.select_frame(f.exponential.Exponential(self)))
         self.functionsMenu.add_command(label="Integral", command=lambda: self.select_frame(f.integral.Integral(self)))
