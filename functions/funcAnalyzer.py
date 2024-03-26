@@ -102,10 +102,19 @@ class FunctionAnalyzer(FunctionFrameBase):
 g(x)=0,5x^4-3x^3+5x^2-2x+0,5
 ^\s*f\(x\)\s*=\s*[+-]?\s*\(\s*\d+\s*\*\s*x\^\(\d+\)\s*\)\s*[+-]?\s*\(\s*\d+\s*\*\s*x\^\(\d+\)\s*\)\s*([+-]?\s*\d+\s*)*$
 '''
-    def range(self):
-        rangeX, rangeY = self.rangeX_entry.get(), self.rangeY_entry.get()
-        rangeX.split(',')
-        rangeY.split(',')
+    def remove_whitespace(self, string):
+        output = ""
+
+        for _, char in enumerate(string):
+            if char != " ":
+                output += char
+        return output
+
+
+    def range(self, inp):
+
+        cln_input = self.remove_whitespace(inp)
+        rangeX, rangeY = cln_input.split(',')
         return float(rangeX), float(rangeY)
 
 
@@ -118,10 +127,10 @@ g(x)=0,5x^4-3x^3+5x^2-2x+0,5
 
         for token in tokens:
             # Extract the coefficient and exponent
-            coefficient_match = re.search(r'[-+]?(?<!\^)\d*\.\d+x?\s*|[-+]?(?<!\^)\d*\,\d+x?\s*|[-+]?(?<!\^)\d+x\s*', token)
+            coefficient_match = re.search(r'[-+]?(?<!\^)\d*\.\d+|[-+]?(?<!\^)\d*\,\d+|[-+]?(?<!\^)\d+', token)    #'[-+]?(?<!\^)\d*\.\d+x?\s*|[-+]?(?<!\^)\d*\,\d+x?\s*|[-+]?(?<!\^)\d+x\s*'
+            coefficient = coefficient_match.group(0) if coefficient_match else '1'
+            
             exponent_match = re.search(r'\^[-+]?\d*\.?\d*', token)
-
-            coefficient = coefficient_match.group(1) if coefficient_match else '1'
             exponent = exponent_match.group(1) if exponent_match else '1'
 
             terms.append(coefficient)
@@ -133,8 +142,15 @@ g(x)=0,5x^4-3x^3+5x^2-2x+0,5
     def create_basis_exponent_pairs(self, terms, exponents):
         basis_exponent_pairs = []
         for term, exponent in zip(terms, exponents):
+            try:
+                '''basis = float(term)
+                exponent = int(exponent)'''
+                basis_exponent_pairs.append((float(term), int(exponent)))
+            except ValueError:
+                pass
+                #basis = term  #0
             # Convert the term and exponent to a tuple and append it to the list
-            basis_exponent_pairs.append((float(term), int(exponent)))
+            #basis_exponent_pairs.append((term, exponent))
 
         return basis_exponent_pairs
 
@@ -205,7 +221,7 @@ g(x)=0,5x^4-3x^3+5x^2-2x+0,5
         match max_degree:
 
             case 1:
-                a, b = terms[1], terms[0]
+                a, b = float(terms[1]), float(terms[0])
                 if a != 0:
                     root = -b / a
                     roots.append(root)
@@ -232,7 +248,12 @@ g(x)=0,5x^4-3x^3+5x^2-2x+0,5
     def func(self, x_value):
         y_value = 0
         for basis, exponent in self.basis_exponent_pairs:
-            y_value += basis * x_value ** exponent
+            try:
+                basis = float(basis)
+                exponent = int(exponent)
+            except ValueError:
+                continue
+            y_value += basis * (x_value ** exponent)    #q: kannst du mir die fehlerbehebung zu diesem fehler: TypeError: ufunc 'power' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe'' schreiben? 
         return y_value
 
 
@@ -249,7 +270,8 @@ g(x)=0,5x^4-3x^3+5x^2-2x+0,5
         y_label = self.yvalue_entry.get()
 
         terms, exponents, tokens = self.extract_function_components(self.func_entry.get())
-        basis_exponent_pairs = self.create_basis_exponent_pairs(terms, exponents)
+        self.basis_exponent_pairs = self.create_basis_exponent_pairs(terms, exponents)
+        max_degree = self.determine_degree(exponents)
 
         self.fig.clear()
 
@@ -287,7 +309,7 @@ g(x)=0,5x^4-3x^3+5x^2-2x+0,5
         self.ax.scatter(roots, [0 for _ in roots], color='blue', label='Roots')
 
 
-        reconstruct_func = self.reconstruct_function_string(self.func_entry.get())
+        reconstruct_func = self.reconstruct_function_string(self.func_entry.get(), max_degree)
 
         self.ax.plot(x_val, self.from_func(x_val, reconstruct_func), label=reconstruct_func)
 
@@ -300,7 +322,7 @@ g(x)=0,5x^4-3x^3+5x^2-2x+0,5
                 turning_points.append(n.real)
 
         if self.determine_degree(exponents) > 1:
-            sec_reconstruct = self.reconstruct_function_string(reconstruct_func)
+            sec_reconstruct = self.reconstruct_function_string(reconstruct_func, max_degree - 1)
 
             if self.determine_degree(exponents) > 2:
                 _point_of_inflection = self.calculate_roots(sec_reconstruct)
@@ -321,7 +343,7 @@ g(x)=0,5x^4-3x^3+5x^2-2x+0,5
         self.canvas = FigureCanvasTkAgg(self.fig, master=self.figure_frame)
         self.canvas.draw()
 
-        self.canvas.get_tk_widget().pack(side=TOP, fill=BOTH, expand=False)
+        self.canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=False)
 
         self.figure_frame.grid(row=9, column=0, sticky="nsew")
 
@@ -330,7 +352,10 @@ g(x)=0,5x^4-3x^3+5x^2-2x+0,5
         terms, exponents, tokens = self.extract_function_components(self.func_entry.get())
         basis_exponent_pairs = self.create_basis_exponent_pairs(terms, exponents)
         end_val = 0
+        val = float(val)
         for basis, exponent in basis_exponent_pairs:
+            exponent = int(exponent)
+            basis = float(basis)
             match exponent:
                 case 0:
                     end_val += basis
