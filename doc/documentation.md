@@ -9,34 +9,34 @@ Der Mathe Funktionsrechner ist auf verschiedenen Betriebssystemen installierbar.
 
 ### Windows
 
-    Laden Sie das Repository herunter: Math-Project
-    Öffnen Sie den heruntergeladenen Ordner in Ihrer bevorzugten integrierten Entwicklungsumgebung (IDE).
-    Führen Sie die Datei "main.py" aus, um den Funktionsrechner zu starten.
+    - Laden Sie das Repository herunter: Math-Project
+    - Öffnen Sie den heruntergeladenen Ordner in Ihrer bevorzugten integrierten Entwicklungsumgebung (IDE).
+    - Führen Sie die Datei "main.py" aus, um den Funktionsrechner zu starten.
 
 ### Linux
 
-    Öffnen Sie die Befehlszeile.
-    Geben Sie den Befehl git clone https://github.com/Erase01/Math-Project.git ein, um das Repository herunterzuladen.
-    Navigieren Sie zum heruntergeladenen Ordner mit dem Befehl cd Math-Project.
-    Installieren Sie die erforderlichen Pakete mit dem Befehl pip install -r requirements.txt.
-    Starten Sie den Funktionsrechner mit dem Befehl python3 main.py.
+    - Öffnen Sie die Befehlszeile.
+    - Geben Sie den Befehl git clone https://github.com/Erase01/Math-Project.git ein, um das Repository herunterzuladen.
+    - Navigieren Sie zum heruntergeladenen Ordner mit dem Befehl cd Math-Project.
+    - Installieren Sie die erforderlichen Pakete mit dem Befehl pip install -r requirements.txt.
+    - Starten Sie den Funktionsrechner mit dem Befehl python3 main.py.
 
 ### Nix Shell
 
-    Öffnen Sie die Befehlszeile.
-    Geben Sie den Befehl git clone https://github.com/Erase01/Math-Project.git ein, um das Repository herunterzuladen.
-    Navigieren Sie zum heruntergeladenen Ordner mit dem Befehl cd Math-Project.
-    Geben Sie den Befehl export NIXPKGS_ALLOW_INSECURE=1 ein, um xpdf zu installieren.
-    Geben Sie den Befehl nix-shell ein, um eine Umgebung mit den erforderlichen Paketen zu erstellen.
-    Starten Sie den Funktionsrechner mit dem Befehl python main.py.
+    - Öffnen Sie die Befehlszeile.
+    - Geben Sie den Befehl git clone https://github.com/Erase01/Math-Project.git ein, um das Repository herunterzuladen.
+    - Navigieren Sie zum heruntergeladenen Ordner mit dem Befehl cd Math-Project.
+    - Geben Sie den Befehl export NIXPKGS_ALLOW_INSECURE=1 ein, um xpdf zu installieren.
+    - Geben Sie den Befehl nix-shell ein, um eine Umgebung mit den erforderlichen Paketen zu erstellen.
+    -Starten Sie den Funktionsrechner mit dem Befehl python main.py.
 
 ### macOS
 
-    Öffnen Sie die Befehlszeile.
-    Geben Sie den Befehl git clone https://github.com/Erase01/Math-Project.git ein, um das Repository herunterzuladen.
-    Navigieren Sie zum heruntergeladenen Ordner mit dem Befehl cd Math-Project.
-    Installieren Sie die erforderlichen Pakete mit dem Befehl pip install -r requirements.txt.
-    Starten Sie den Funktionsrechner mit dem Befehl python3 main.py.
+    - Öffnen Sie die Befehlszeile.
+    - Geben Sie den Befehl git clone https://github.com/Erase01/Math-Project.git ein, um das Repository herunterzuladen.
+    - Navigieren Sie zum heruntergeladenen Ordner mit dem Befehl cd Math-Project.
+    - Installieren Sie die erforderlichen Pakete mit dem Befehl pip install -r requirements.txt.
+    - Starten Sie den Funktionsrechner mit dem Befehl python3 main.py.
 
 ## Benutzeroberfläche:
 Der Mathe Funktionsrechner verfügt über eine benutzerfreundliche grafische Benutzeroberfläche. Beim Start der Software wird eine Hauptseite angezeigt, auf der Benutzer die gewünschten Funktionen auswählen können. Die Benutzer können eine der verfügbaren Funktionen auswählen und die Parameter für die ausgewählte Funktion eingeben. Nach der Eingabe der Parameter wird die berechnete Funktion auf dem Bildschirm angezeigt.
