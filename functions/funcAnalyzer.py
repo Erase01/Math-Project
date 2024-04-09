@@ -253,7 +253,7 @@ g(x)=0,5x^4-3x^3+5x^2-2x+0,5
                 exponent = int(exponent)
             except ValueError:
                 continue
-            y_value += basis * (x_value ** exponent)    #q: kannst du mir die fehlerbehebung zu diesem fehler: TypeError: ufunc 'power' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe'' schreiben? 
+            y_value += basis * (x_value ** exponent)
         return y_value
 
 
