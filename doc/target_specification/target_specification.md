@@ -37,12 +37,12 @@
 
 ## Leistungen
 
-   - Das Projekt soll bis zum 14.04.2023 fertig werden
+   - Das Projekt soll bis zum 15.03.2024 fertig werden
    - Werte werden in Floats gespeichert
 
 ## Qualitätsanforderungen
 
-   - Die Software soll möglich scnell zu bedienen sein
+   - Die Software soll gut/schnell zu bedienen sein
    - Außerdem soll die Software möglichst schnell laufen
 
 ## Benutzeroberfläche
