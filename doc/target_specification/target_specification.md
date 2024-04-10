@@ -3,12 +3,12 @@
 
 ## Zielbestimmung
 
-   - Es soll eine Datenbank zum Speichern von usern da sein
+   - Es soll eine Datenbank zum Speichern von Usern geben
    - Es soll dem User die Mathematik näher gebracht werden
-   - Die Software soll die Möglichkeit haben an einen Graph ran zu zoomen oder weg zu zoomen
-   - Die funktionen sollen graphisch dargestellt werden
-   - Schnittpunkte und Nullstellen sollen ausgerechnet werden, und angezeig werden
-   - Die Achsen des Koordinatensystems sollen Variabel bezeichnet werden
+   - Die Software soll die Möglichkeit bieten, an einen Graph ran und wegzuzoomen
+   - Die Funktionen sollen grafisch dargestellt werden
+   - Schnittpunkte und Nullstellen sollen ausgerechnet und angezeigt werden
+   - Die Achsen des Koordinatensystems sollen variabel beschriftet werden können
 
 ## Einsatz
 
@@ -23,7 +23,7 @@
 ## Funktionen
 
    - Der User kann sich am Anfang anmelden oder einen Account erstellen
-   - Die Software kann folgende Mathefunktionen berechnen:
+   - Die Software kann folgende mathematische Funktionen berechnen:
        - Lineare Funktionen
        - Quadratische Funktionen
        - Ganzrationale Funktionen
@@ -32,8 +32,8 @@
        - Einstieg Differenzialrechnung
        - Kurvendiskussion
        - Integralrechnung
-   - Diese Können im Jeweiligen Menüpunkt ausgewählt werden
-   - Hilfe zu den Jeweiligen Funktionen können jederzeit aufgerufen werden
+   - Diese können im jeweiligen Menüpunkt ausgewählt werden
+   - Hilfe zu den jeweiligen Funktionen können jederzeit aufgerufen werden
 
 ## Leistungen
 
@@ -47,9 +47,10 @@
 
 ## Benutzeroberfläche
 
-   - Die Oberfläche der Software wird wie eine standart Oberfläche ausehen:
-       - Kopfzeilen Menü mit den punkten: Funktionen Account und Hilfe
-       - Jede Funktion besitzt ein eigenes Fenster in dem Input Felder sind, und das Koordinatensystem in dem die Funktion angezeigt wird
+   - Die Oberfläche der Software soll modern/ansprechend aussehen:
+       - Kopfzeilenmenü mit den Punkten: Funktionen, Extras, Account und Hilfe
+       - Jede Funktion besitzt ein eigenes Fenster, welches Input-Felder und ein
+ Koordinatensystem enthält, in dem die Funktion dargestellt wird
        - Unter dem Punkt Hilfe findet der User ein eigenes Fenster mit Hilfe
 
 ## Technisches Umfeld
@@ -76,5 +77,6 @@
 
 ## Tests
 
-   - Nach dem erstellen einer Funktion wird diese getestet
-   - Zum Ende der entwicklung wird die Software komplett getestet, um Bugs und andere Probleme z.B. rechen Fehler zu verhindern.
+   - Nach dem Erstellen einer Funktion wird diese getestet
+   - Zum Ende der Entwicklung wird die Software komplett getestet, um Bugs 
+und andere Probleme, wie z.B. Rechenfehler, zu verhindern.
