@@ -14,7 +14,7 @@ class pa_calculator:            # pa = payroll accounting
     
     def lohnsteuer(self):
         zu_versteuerndes_einkommen = self.berechung_zu_versteuerndes_einkommen()
-        LSt = zu_versteuerndes_einkommen * self.percent(42)
+        LSt = zu_versteuerndes_einkommen * self.percent(42)     #To-Do -Loop to limit the percentages. Information at github
         return max(0, round(LSt, 2))
     
     def kirchensteuer(self):
@@ -37,10 +37,10 @@ class pa_calculator:            # pa = payroll accounting
         zu_versteuerndes_einkommen = self.berechung_zu_versteuerndes_einkommen()
 
         if zu_versteuerndes_einkommen <= cal:
-            SV = zu_versteuerndes_einkommen - zu_versteuerndes_einkommen * self.percent(SV)
+            SV = zu_versteuerndes_einkommen * self.percent(SV)
             return max(0, round(SV, 2))
         else:
-            SV = cal - cal * self.percent(SV)
+            SV = cal * self.percent(SV)
             return max(0, round(SV, 2))
         
 
@@ -54,5 +54,5 @@ if __name__ == '__main__':
     print("Kirchensteuer:", pa.kirchensteuer(), "€")
     print("Solidaritätszuschlag:", pa.solidaritaetszuschlag(), "€")
     print("Sozialversicherung:", pa.sv(), "€")
-    #print("Nettoeinkommen:", einkommen - pa.lohnsteuer() - pa.kirchensteuer() - pa.solidaritaetszuschlag() - pa.sv(), "€")                 # in progress
-    #print("Nettoeinkommen ohne Kirchensteuer:", einkommen - pa.lohnsteuer() - pa.solidaritaetszuschlag() - pa.sv(), "€")
+    print("Nettoeinkommen:", round(einkommen - pa.lohnsteuer() - pa.kirchensteuer() - pa.solidaritaetszuschlag() - pa.sv(), 2), "€")                 # in progress
+    print("Nettoeinkommen ohne Kirchensteuer:", round(einkommen - pa.lohnsteuer() - pa.solidaritaetszuschlag() - pa.sv(), 2), "€")
